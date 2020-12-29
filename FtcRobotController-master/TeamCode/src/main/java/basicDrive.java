@@ -12,13 +12,23 @@ public class basicDrive extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
 
+    //declaring drive motors
+
     private DcMotor frontLeft = null;
     private DcMotor frontRight = null;
     private DcMotor backLeft = null;
     private DcMotor backRight = null;
 
+    //declaring mechanism motors
+
+    private DcMotor intakeMotor = null;
+    private DcMotor beltMotor = null;
+    private DcMotor shooterMotor = null;
+
     @Override
     public void RunOpmode() {
+
+    //initializing drive motors
 
     frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
     frontRight = hardwareMap.get(DcMotor.class, "frontRight");
@@ -30,6 +40,16 @@ public class basicDrive extends LinearOpMode {
     backLeft.setDirection(DcMotor.Direction.FORWARD);
     backRight.setDirection(DcMotor.Direction.FORWARD);
 
+    //initializing mechanism motors
+
+    intakeMotor = hardwareMap.get(DcMotor.class, "intakeMotor");
+    beltMotor = hardwareMap.get(DcMotor.class, "beltMotor");
+    shooterMotor = hardwareMap.get(DcMotor.class, "shooterMotor");
+
+    intakeMotor.setDirection(DcMotor.Direction.FORWARD);
+    beltMotor.setDirection(DcMotor.Direction.FORWARD);
+    shooterMotor.setDirection(DcMotor.Direction.FORWARD);
+
     //drive code
 
     double leftPower = deadband(gamepad1.left_stick_y) + deadband(gamepad1.right_stick_x);
@@ -40,6 +60,10 @@ public class basicDrive extends LinearOpMode {
     backLeft.setPower(leftPower*motorLimit);
     frontRight.setPower(rightPower*motorLimit);
     backRight.setPower(rightPower*motorLimit);
+
+    //mechanisms controls
+    if();
+    intakeMotor.setPower();
     
     }
 
@@ -59,5 +83,7 @@ public class basicDrive extends LinearOpMode {
             return input;
         }
     }
+
+
 
 }
