@@ -62,8 +62,20 @@ public class basicDrive extends LinearOpMode {
     backRight.setPower(rightPower*motorLimit);
 
     //mechanisms controls
-    if();
-    intakeMotor.setPower();
+    /* current controls :  
+        gamepad a runs intake (backwards)
+        gamepad left trigger will run shooter motor*
+        gamepad right trigger will run belt motor*
+            *both triggers are pressure sensitive so there is some range of speeds you can go at !! 
+    */
+    if(gamepad1.a) {
+        intakeMotor.setPower(-1);
+    } else {
+        intakeMotor.setPower(0);
+    }
+
+    shooterMotor.setPower(deadband(gamepad1.left_trigger));
+    beltMotor.setPower(deadband(gamepad1.right_trigger));
     
     }
 
@@ -83,7 +95,4 @@ public class basicDrive extends LinearOpMode {
             return input;
         }
     }
-
-
-
 }
